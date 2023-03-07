@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import { questions } from "./Api";
+import MyAccordian from './MyAccordion';
+import './accordion.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const [data, setData] = useState(questions);
+    return (
+        <>
+            <section className="main-div">
+                <h1>Frequently Asked Questions </h1>
+                
+        {
+                data.map((curElem) => {
+                    return <MyAccordian key={curElem.id} {...curElem} />
+                    //here the spread operator is use to pass the the properties of the questions api
+                })        
+        }
+                 </section>
+        </>
+    )
 }
 
 export default App;
